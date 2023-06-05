@@ -10,13 +10,6 @@ const App = () => {
         browserSupportsSpeechRecognition
     } = useSpeechRecognition();
 
-    useEffect(() => {
-        if (transcript.includes('לחזור')) {
-            // Add your logic to highlight or indicate the word "לחזור" in the transcript
-            console.log('Word "לחזור" detected!');
-        }
-    }, [transcript]);
-
     const startListening = () => {
         setIsListening(true);
         SpeechRecognition.startListening({ continuous: true });
@@ -26,6 +19,12 @@ const App = () => {
         setIsListening(false);
         SpeechRecognition.stopListening();
     };
+
+    useEffect(() => {
+        if (transcript.includes('לחזור')) {
+            console.log('Word "לחזור" detected!');
+        }
+    }, [transcript]);
 
     const checkWordRecognition = () => {
         if (transcript.includes('לחזור')) {
@@ -106,4 +105,5 @@ const styles = {
         width: '400px',
     },
 };
+
 export default App;
